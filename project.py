@@ -71,7 +71,7 @@ def check_reminders():
 
 # Function to add a new task
 def set_task():
-    print("\n       SET THE TASK                  ")
+    print("\n       SET THE REMINDER                  ")
     title = input("\nTitle of task: ").strip().lower()
     desc = input("Description of task: ")
     input_date = input("Date(YYYY-MM-DD): ")
@@ -100,10 +100,10 @@ def view():
         print("No tasks to show")
         return
     else:
-        print("-------------------YOUR TASKS---------------------\n")
+        print("-------------------YOUR REMINDERS---------------------\n")
         for i, reminder in enumerate(details):
             print(f"{i+1}. {reminder['title']}\n   {reminder['description']}\n   on {reminder['date']} at {reminder['time']}")
-            print("----------------------------------------------")
+            print("--------------------------------------------------")
 
 # Function to edit a task
 def edit():
