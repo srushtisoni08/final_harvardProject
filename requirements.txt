@@ -1,0 +1,6 @@
+# requirements.txt
+
+# project.py
+dateutil.parser
+datetime
+pyttsx3
