@@ -69,11 +69,11 @@ def check_reminders():
                 save_list(details)
         time.sleep(60)  # Check every minute
 
-# Function to add a new task
+# Function to add a new reminder
 def set_task():
     print("\n       SET THE REMINDER                  ")
-    title = input("\nTitle of task: ").strip().lower()
-    desc = input("Description of task: ")
+    title = input("\nTitle of reminder: ").strip().lower()
+    desc = input("Description of reminder: ")
     input_date = input("Date(YYYY-MM-DD): ")
     time_input = input("Time(HH:MM): ")
 
@@ -94,10 +94,10 @@ def set_task():
         engine.runAndWait()
         set_task()
 
-# Function to view all tasks
+# Function to view all reminders
 def view():
     if not details:
-        print("No tasks to show")
+        print("No reminders to show")
         return
     else:
         print("-------------------YOUR REMINDERS---------------------\n")
@@ -105,20 +105,20 @@ def view():
             print(f"{i+1}. {reminder['title']}\n   {reminder['description']}\n   on {reminder['date']} at {reminder['time']}")
             print("--------------------------------------------------")
 
-# Function to edit a task
+# Function to edit a reminder
 def edit():
-    editing_title = input("Enter the title of task you want to edit: ").strip().lower()
+    editing_title = input("Enter the title of reminder you want to edit: ").strip().lower()
     for reminder in details:
         if reminder['title'] == editing_title:
             details.remove(reminder)
             print("Edit the details of your data: \n")
             set_task()
             return
-    print("Such task does not exist!")
-    engine.say("Such task does not exist!")
+    print("Such reminder does not exist!")
+    engine.say("Such reminder does not exist!")
     engine.runAndWait()
 
-# Function to search for a task
+# Function to search for a reminder
 def search():
     choice = input("Do you want to search by \n1)Title \n2)Date\nEnter your choice: ")
     if choice == "1":
@@ -133,8 +133,8 @@ def search():
                 engine.runAndWait()
                 found = True
         if not found:
-            print(f"No task found with the title '{text}'")
-            engine.say(f"No task found with the title '{text}'")
+            print(f"No reminder found with the title '{text}'")
+            engine.say(f"No reminder found with the title '{text}'")
             engine.runAndWait()
     elif choice == "2":
         date_search = input("Enter the date: ").strip()
@@ -144,34 +144,34 @@ def search():
                 print("-------------------DETAILS-------------------\n")
                 print(f"Title={reminder['title']}\nDescription={reminder['description']}\non {reminder['date']} at {reminder['time']}")
                 print("\n---------------------------------------------")
-                engine.say(f"Task for {reminder['date']} found!")
+                engine.say(f"Reminder for {reminder['date']} found!")
                 engine.runAndWait()
                 found = True
         if not found:
-            print("No task found with the mentioned date")
-            engine.say("No task found with the mentioned date")
+            print("No reminder found with the mentioned date")
+            engine.say("No reminder found with the mentioned date")
             engine.runAndWait()
     else:
         print("Invalid option")
         engine.say("Invalid option")
         engine.runAndWait()
 
-# Function to delete a task
+# Function to delete a reminder
 def delete():
-    delete_title = input("Enter the title of the task you want to delete: ").strip().lower()
+    delete_title = input("Enter the title of the reminder you want to delete: ").strip().lower()
     found = False
     for reminder in details:
         if reminder['title'] == delete_title:
             details.remove(reminder)
             save_list(details)
             found = True
-            print(f"Task '{delete_title}' deleted successfully!")
-            engine.say(f"Task '{delete_title}' deleted successfully!")
+            print(f"Reminder '{delete_title}' deleted successfully!")
+            engine.say(f"Reminder '{delete_title}' deleted successfully!")
             engine.runAndWait()
             return
     if not found:
-        print(f"No task found with the title '{delete_title}'")
-        engine.say(f"No task found with the title '{delete_title}'")
+        print(f"No reminder found with the title '{delete_title}'")
+        engine.say(f"No reminder found with the title '{delete_title}'")
         engine.runAndWait()
 
 # Time validation function
